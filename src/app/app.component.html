@@ -1,0 +1,41 @@
+<div class="ui container">
+  <h1 class="ui center aligned header">MetHotels Accommodations</h1>
+
+  <table class="ui celled table equal width">
+    <thead>
+      <tr>
+        <th class="two wide">ID</th>
+        <th class="two wide">Name</th>
+        <th class="two wide">Beds</th>
+        <th class="two wide">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr app-room *ngFor="let room of rooms" [room]="room"></tr>
+    </tbody>
+  </table>
+
+  <form class="ui large form segment">
+    <h3 class="ui header">Add a Room</h3>
+
+    <div class="three fields">
+      <div class="field">
+        <label for="name">Room Name</label>
+        <input type="text" #roomName required />
+      </div>
+      <div class="field">
+        <label for="beds">Number of Beds</label>
+        <input type="number" #roomBeds required min="1" />
+      </div>
+      <div class="field">
+        <label for="price">Price</label>
+        <input type="number" #roomPrice required min="1" />
+      </div>
+    </div>
+
+    <button (click)="addRoom(roomName, roomBeds, roomPrice)" class="ui positive button">
+      Add Room
+    </button>
+    
+  </form>
+</div>
