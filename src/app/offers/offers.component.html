@@ -1,0 +1,11 @@
+<div class="ui cards">
+  <div class="card" *ngFor="let offer of offers">
+    <div class="content">
+      <div class="header">{{ offer.title }}</div>
+      <div class="description">
+        {{ offer.description }}
+      </div>
+    </div>
+    <div class="extra content">Valid until: {{ offer.validUntil }}</div>
+  </div>
+</div>

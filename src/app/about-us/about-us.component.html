@@ -1,0 +1,10 @@
+<div class="ui text container">
+  <h2 class="ui dividing header">{{ hotelName }}</h2>
+  <p><strong>Founded:</strong> {{ foundedYear }}</p>
+  <p><strong>Mission:</strong> {{ mission }}</p>
+  <p><strong>Vision:</strong> {{ vision }}</p>
+  <p><strong>Core Values:</strong></p>
+  <ul>
+    <li *ngFor="let value of values">{{ value }}</li>
+  </ul>
+</div>

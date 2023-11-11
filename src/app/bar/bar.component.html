@@ -1,0 +1,11 @@
+<div class="ui menu">
+  <a class="item" (click)="selectOption('offers')">Offers</a>
+  <a class="item" (click)="selectOption('recommendations')">Recommendations</a>
+  <a class="item" (click)="selectOption('aboutUs')">About Us</a>
+</div>
+
+<app-offers *ngIf="selectedOption === 'offers'"></app-offers>
+<app-recommendations
+  *ngIf="selectedOption === 'recommendations'"
+></app-recommendations>
+<app-about-us *ngIf="selectedOption === 'aboutUs'"></app-about-us>
