@@ -11,35 +11,16 @@ export class AppComponent {
   rooms: Room[] = [];
   nextId = 1; // ID prve sobe
 
-  addRoom(
-    name: HTMLInputElement,
-    beds: HTMLInputElement,
-    price: HTMLInputElement
-  ) {
-    console.log(
-      `Adding room name: ${name.value}, beds count: ${beds.value} and price: ${price.value}`
-    );
-    // + konvertira string vrijednost u number
-    const newRoom = new Room(
-      this.nextId,
-      name.value,
-      +beds.value,
-      +price.value
-    );
+  onRoomAdded(newRoom: Room) {
     if (this.validateRoom(newRoom)) {
-      this.rooms.push(newRoom);
+      this.rooms.push({ ...newRoom, id: this.nextId });
       this.nextId++;
-      name.value = '';
-      beds.value = '';
-      price.value = '';
     } else {
       alert('Invalid room data');
     }
-    // sprecava izvrsavanje default POST zahtjeva i time refresh stranice
-    return false;
   }
 
   validateRoom(room: Room): boolean {
-    return room.name.trim() !== '' && room.beds > 0 && room.price > 0;
+    return room.name.trim().length >= 3 && room.beds >= 1 && room.price >= 1;
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,21 +9,21 @@ import { BarComponent } from './bar/bar.component';
 import { OffersComponent } from './offers/offers.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { RoomFormComponent } from './room-form/room-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomComponent,
+    RoomFormComponent,
     BarComponent,
     OffersComponent,
     RecommendationsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    RoomFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,96 @@
+<form [formGroup]="roomForm" (ngSubmit)="onSubmit()" class="ui large form segment">
+  <h3 class="ui header">Add a Room</h3>
+
+  <div class="three fields">
+    <div class="field" [class.error]="
+        roomForm.get('name')?.invalid &&
+        (roomForm.get('name')?.dirty || roomForm.get('name')?.touched)
+      ">
+      <label for="name">Room Name</label>
+      <input type="text" id="name" formControlName="name" required />
+      <!-- za razliku od .controls['name'].invalid, .get('name')?.errors?.['required'] omogućuje prikaz specifičnih poruka u zavisnosti od vrste validacijske greške -->
+      <div
+        *ngIf="roomForm.get('name')?.errors?.['required'] && (roomForm.get('name')?.dirty || roomForm.get('name')?.touched)"
+        class="ui pointing red basic label">
+        Room name is required.
+      </div>
+      <div
+        *ngIf="roomForm.get('name')?.errors?.['minlength'] && (roomForm.get('name')?.dirty || roomForm.get('name')?.touched)"
+        class="ui pointing red basic label">
+        Room name must be at least 6 characters.
+      </div>
+    </div>
+
+    <div class="field" [class.error]="
+        roomForm.get('beds')?.invalid &&
+        (roomForm.get('beds')?.dirty || roomForm.get('beds')?.touched)
+      ">
+      <label for="beds">Number of Beds</label>
+      <input type="number" id="beds" formControlName="beds" />
+      <div *ngIf="roomForm.get('beds')?.errors?.['required'] && (roomForm.get('beds')?.dirty ||
+        roomForm.get('beds')?.touched)" class="ui pointing red basic label">
+        Number of beds is required.
+      </div>
+      <div
+        *ngIf="roomForm.get('beds')?.errors?.['min'] && (roomForm.get('beds')?.dirty  || roomForm.get('beds')?.touched)"
+        class="ui pointing red basic label">
+        There must be at least 1 bed.
+      </div>
+      <div
+        *ngIf="roomForm.get('beds')?.errors?.['max'] && (roomForm.get('beds')?.dirty  || roomForm.get('beds')?.touched)"
+        class="ui pointing red basic label">
+        There must be 10 beds or less.
+      </div>
+    </div>
+
+    <div class="field" [class.error]="
+        roomForm.get('price')?.invalid &&
+        (roomForm.get('price')?.dirty || roomForm.get('price')?.touched)
+      ">
+      <label for="price">Price per Night</label>
+      <input type="number" id="price" formControlName="price" />
+      <div
+        *ngIf="roomForm.get('price')?.errors?.['required'] && (roomForm.get('price')?.dirty || roomForm.get('price')?.touched)"
+        class="ui pointing red basic label">
+        Price is required.
+      </div>
+      <div
+        *ngIf="roomForm.get('price')?.errors?.['min'] && (roomForm.get('price')?.dirty || roomForm.get('price')?.touched)"
+        class="ui pointing red basic label">
+        Price must be $1 or greater.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" formControlName="wifi" />
+      <label>Free WiFi</label>
+    </div>
+  </div>
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" formControlName="airConditioning" />
+      <label>Air Conditioning</label>
+    </div>
+  </div>
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" formControlName="miniBar" />
+      <label>Mini Bar</label>
+    </div>
+  </div>
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" formControlName="sauna" />
+      <label>Sauna</label>
+    </div>
+  </div>
+
+  <div *ngIf="extraCost > 0" class="ui message">
+    We will charge ${{ extraCost.toFixed(2) }} extra for the service.
+  </div>
+
+  <button type="submit" class="ui positive button">Add Room</button>
+</form>

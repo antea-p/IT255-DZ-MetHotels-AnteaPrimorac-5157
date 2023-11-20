@@ -16,7 +16,7 @@ export class RoomComponent implements OnInit {
   @Input() room: Room;
 
   constructor() {
-    this.room = new Room(0, 'Test room', 1, 5);
+    this.room = new Room(0, 'Test room', 1, 5, 0, true, false, false, false);
   }
 
   ngOnInit() {}
