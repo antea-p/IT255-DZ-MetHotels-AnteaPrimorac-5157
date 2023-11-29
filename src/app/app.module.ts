@@ -10,6 +10,7 @@ import { OffersComponent } from './offers/offers.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RoomFormComponent } from './room-form/room-form.component';
+import { RoomService } from './services/room.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { RoomFormComponent } from './room-form/room-form.component';
     RoomFormComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
-  providers: [],
+  providers: [RoomService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

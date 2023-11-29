@@ -21,6 +21,11 @@ export class AppComponent {
   }
 
   validateRoom(room: Room): boolean {
-    return room.name.trim().length >= 3 && room.beds >= 1 && room.price >= 1;
+    return (
+      room.name.trim().length >= 3 &&
+      room.beds >= 1 &&
+      room.price >= 1 &&
+      room.numberOfNights >= 1
+    );
   }
 }

@@ -1,7 +1,7 @@
 <form [formGroup]="roomForm" (ngSubmit)="onSubmit()" class="ui large form segment">
   <h3 class="ui header">Add a Room</h3>
 
-  <div class="three fields">
+  <div class="four fields">
     <div class="field" [class.error]="
         roomForm.get('name')?.invalid &&
         (roomForm.get('name')?.dirty || roomForm.get('name')?.touched)
@@ -58,6 +58,25 @@
         *ngIf="roomForm.get('price')?.errors?.['min'] && (roomForm.get('price')?.dirty || roomForm.get('price')?.touched)"
         class="ui pointing red basic label">
         Price must be $1 or greater.
+      </div>
+    </div>
+
+
+    <div class="field" [class.error]="
+        roomForm.get('numberOfNights')?.invalid &&
+        (roomForm.get('numberOfNights')?.dirty || roomForm.get('numberOfNights')?.touched)
+      ">
+      <label for="numberOfNights">Number of Nights</label>
+      <input type="number" id="numberOfNights" formControlName="numberOfNights" />
+      <div
+        *ngIf="roomForm.get('numberOfNights')?.errors?.['required'] && (roomForm.get('numberOfNights')?.dirty || roomForm.get('numberOfNights')?.touched)"
+        class="ui pointing red basic label">
+        Number of nights is required.
+      </div>
+      <div
+        *ngIf="roomForm.get('numberOfNights')?.errors?.['min'] && (roomForm.get('numberOfNights')?.dirty || roomForm.get('numberOfNights')?.touched)"
+        class="ui pointing red basic label">
+        Number of nights must be 1 or greater.
       </div>
     </div>
   </div>

@@ -1,7 +1,8 @@
 <td class="one wide">{{ room.id }}</td>
 <td class="two wide">{{ room.name }}</td>
 <td class="one wide">{{ room.beds }}</td>
-<td class="one wide">${{ (room.price + room.extraCost).toFixed(2) }}</td>
+<td class="one wide">${{ room.price.toFixed(2) }}</td>
+<td class="one wide">{{ room.numberOfNights }}</td>
 <td class="one wide">{{ room.wifi ? '✅' : '' }}</td>
 <td class="one wide">{{ room.airConditioning ? '✅' : '' }}</td>
 <td class="one wide">{{ room.miniBar ? '✅' : '' }}</td>

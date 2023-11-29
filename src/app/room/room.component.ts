@@ -13,11 +13,9 @@ import { Room } from './room.model';
 })
 export class RoomComponent implements OnInit {
   @HostBinding('attr.class') cssClass = 'row';
-  @Input() room: Room;
+  @Input() room!: Room;
 
-  constructor() {
-    this.room = new Room(0, 'Test room', 1, 5, 0, true, false, false, false);
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

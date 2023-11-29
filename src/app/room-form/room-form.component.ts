@@ -6,6 +6,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { Room } from '../room/room.model';
+import { RoomService } from '../services/room.service';
 
 @Component({
   selector: 'app-room-form',
@@ -26,7 +27,7 @@ export class RoomFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private roomService: RoomService) {
     this.createForm();
     this.setupValueChangesObservation();
   }
@@ -36,6 +37,7 @@ export class RoomFormComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(6)]],
       beds: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
       price: ['', [Validators.required, Validators.min(1)]],
+      numberOfNights: ['', [Validators.required, Validators.min(1)]],
       wifi: [true],
       airConditioning: [false],
       miniBar: [false],
@@ -66,17 +68,22 @@ export class RoomFormComponent implements OnInit {
 
   onSubmit() {
     if (this.roomForm.valid) {
-       const newRoom = new Room(
-        0, // temporary ID
-        this.roomForm.value.name,
-        this.roomForm.value.beds,
-        this.roomForm.value.price,
-        this.extraCost,
-        this.roomForm.value.wifi,
-        this.roomForm.value.airConditioning,
-        this.roomForm.value.miniBar,
-        this.roomForm.value.sauna
+      const formValue = this.roomForm.value;
+      // računanje cijene primjenom metode RoomService-a
+      const totalPrice = this.roomService.getPrice(formValue.price, formValue.numberOfNights, this.extraCost);
+      console.log(`Called roomService.getPrice(newRoom), got ${totalPrice}`);
+      const newRoom = new Room(
+        0,
+        formValue.name,
+        formValue.beds,
+        totalPrice,
+        formValue.numberOfNights,
+        formValue.wifi,
+        formValue.airConditioning,
+        formValue.miniBar,
+        formValue.sauna
       );
+
       this.roomAdded.emit(newRoom);
       this.roomForm.reset();
     } else {

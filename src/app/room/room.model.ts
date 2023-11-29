@@ -5,7 +5,7 @@ export class Room {
     public name: string,
     public beds: number,
     public price: number,
-    public extraCost: number,
+    public numberOfNights: number,
     public wifi: boolean,
     public airConditioning: boolean,
     public miniBar: boolean,
