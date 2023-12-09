@@ -1,0 +1,20 @@
+<table class="ui celled table equal width">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Beds</th>
+            <th>Total Price</th>
+            <th>Nights</th>
+            <th>WiFi</th>
+            <th>A/C</th>
+            <th>Mini Bar</th>
+            <th>Sauna</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr app-room *ngFor="let room of rooms" [room]="room" (edit)="onEditRoom(room)"
+            (delete)="onDeleteRoom(room.id)"></tr>
+    </tbody>
+</table>

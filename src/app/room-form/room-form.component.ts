@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -14,22 +14,25 @@ import { RoomService } from '../services/room.service';
   styleUrls: ['./room-form.component.css'],
 })
 export class RoomFormComponent implements OnInit {
-  // znak ! govori TS-u da ce polje sigurno biti inicijaliziran
-  // prije izvrsenja bilo kakve operacije na njemu
-  roomForm!: FormGroup;
-  nameControl!: FormControl;
-
+  roomForm: FormGroup;
+  nameControl: FormControl;
   extraCost: number = 0;
 
-  // kod uspješnog dodavanja sobe, emitiraj roditeljskoj komponenti
-  // podatke o Room objektu
   @Output() roomAdded = new EventEmitter<Room>();
-
-  ngOnInit() {}
+  @Output() roomUpdated = new EventEmitter<Room>();
+  @Input() editRoom: Room | null = null;
 
   constructor(private fb: FormBuilder, private roomService: RoomService) {
     this.createForm();
     this.setupValueChangesObservation();
+  }
+
+  ngOnInit() {
+    this.handleEditRoom();
+  }
+
+  ngOnChanges() {
+    this.handleEditRoom();
   }
 
   createForm() {
@@ -43,13 +46,23 @@ export class RoomFormComponent implements OnInit {
       miniBar: [false],
       sauna: [false],
     });
-
     this.nameControl = this.roomForm.get('name') as FormControl;
   }
 
+  setRoom(room: Room) {
+    this.editRoom = room;
+    this.roomForm.patchValue(room);
+  }
+
+  handleEditRoom() {
+    if (this.editRoom) {
+      this.roomForm.patchValue(this.editRoom);
+    }
+  }
+
   setupValueChangesObservation() {
-    this.nameControl.valueChanges.subscribe((value: string) => {
-      if (value.length < 6) {
+    this.nameControl.valueChanges.subscribe(value => {
+      if (!value || value.length < 6) {
         console.log('Room name has length < 6: ', value);
       }
     });
@@ -61,40 +74,52 @@ export class RoomFormComponent implements OnInit {
 
   calculateExtraCost() {
     this.extraCost = 0;
-    if (this.roomForm.value.airConditioning) this.extraCost += 4.99;
-    if (this.roomForm.value.miniBar) this.extraCost += 9.99;
-    if (this.roomForm.value.sauna) this.extraCost += 19.99;
+    const values = this.roomForm.value;
+    if (values.airConditioning) this.extraCost += 4.99;
+    if (values.miniBar) this.extraCost += 9.99;
+    if (values.sauna) this.extraCost += 19.99;
   }
 
   onSubmit() {
     if (this.roomForm.valid) {
       const formValue = this.roomForm.value;
-      // računanje cijene primjenom metode RoomService-a
-      const totalPrice = this.roomService.getPrice(formValue.price, formValue.numberOfNights, this.extraCost);
-      console.log(`Called roomService.getPrice(newRoom), got ${totalPrice}`);
-      const newRoom = new Room(
-        0,
-        formValue.name,
-        formValue.beds,
-        totalPrice,
-        formValue.numberOfNights,
-        formValue.wifi,
-        formValue.airConditioning,
-        formValue.miniBar,
-        formValue.sauna
-      );
-
-      this.roomAdded.emit(newRoom);
+      this.createRoomObject(formValue);
       this.roomForm.reset();
     } else {
       this.markAllAsTouched();
     }
   }
 
-  // Metoda koja omogućuje prikaz greški u slučaju da je korisnik pritisnuo
-  // Add Form dugme bez prethodnog popunjavanja forme
-  private markAllAsTouched() {
-    Object.values(this.roomForm.controls).forEach((control) => {
+  createRoomObject(formValue: any) {
+
+    const room = new Room(
+      // kod mijenjanja postojeće sobe, dodijeli dosadašnji ID i cijenu
+      // inače dodijeli 0 i izračunatu cijenu 
+      this.editRoom ? this.editRoom.id : 0,
+      formValue.name,
+      formValue.beds,
+      this.editRoom ? formValue.price : this.roomService.getPrice(
+        formValue.price,
+        formValue.numberOfNights,
+        this.extraCost
+      ),
+      formValue.numberOfNights,
+      formValue.wifi,
+      formValue.airConditioning,
+      formValue.miniBar,
+      formValue.sauna
+    );
+
+    // emitiraj roditeljskoj komponenti odgovarajući događaj
+    if (this.editRoom) {
+      this.roomUpdated.emit(room);
+    } else {
+      this.roomAdded.emit(room);
+    }
+  }
+
+  markAllAsTouched() {
+    Object.values(this.roomForm.controls).forEach(control => {
       control.markAsTouched();
     });
   }

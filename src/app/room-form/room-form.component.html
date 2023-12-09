@@ -107,9 +107,9 @@
     </div>
   </div>
 
-  <div *ngIf="extraCost > 0" class="ui message">
+  <div *ngIf="!editRoom && extraCost > 0" class="ui message">
     We will charge ${{ extraCost.toFixed(2) }} extra for the service.
   </div>
 
-  <button type="submit" class="ui positive button">Add Room</button>
+  <button type="submit" class="ui positive button">Submit</button>
 </form>

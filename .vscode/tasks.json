@@ -18,7 +18,10 @@
             "regexp": "bundle generation complete"
           }
         }
-      }
+      },
+      "label": "npm: start",
+      "detail": "ng serve",
+      "group": "build"
     },
     {
       "type": "npm",
@@ -36,6 +39,17 @@
             "regexp": "bundle generation complete"
           }
         }
+      }
+    },
+    {
+      "type": "npm",
+      "script": "json-server",
+      "problemMatcher": [],
+      "label": "npm: json-server",
+      "detail": "json-server --watch db.json",
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
     }
   ]

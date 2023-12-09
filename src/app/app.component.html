@@ -1,24 +1,8 @@
 <div class="ui container">
   <h1 class="ui center aligned header">MetHotels Accommodations</h1>
   <app-bar></app-bar>
-  <table class="ui celled table equal width">
-    <thead>
-      <tr>
-        <th class="one wide">ID</th>
-        <th class="two wide">Name</th>
-        <th class="one wide">Beds</th>
-        <th class="one wide">Total Price</th>
-        <th class="one wide">Nights</th>
-        <th class="one wide">WiFi</th>
-        <th class="one wide">A/C</th>
-        <th class="one wide">Mini Bar</th>
-        <th class="one wide">Sauna</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr app-room *ngFor="let room of rooms" [room]="room"></tr>
-    </tbody>
-  </table>
-
-  <app-room-form (roomAdded)="onRoomAdded($event)"></app-room-form>
+  <app-room-table [rooms]="rooms" (editRoom)="setRoomForEdit($event)"
+    (deleteRoom)="deleteRoom($event)"></app-room-table>
+  <app-room-form [editRoom]="selectedRoom" (roomAdded)="createRoom($event)"
+    (roomUpdated)="updateRoom($event)"></app-room-form>
 </div>

@@ -2,7 +2,9 @@ import {
   Component,
   OnInit,
   HostBinding,
-  Input, // dodato je ovo
+  Input,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import { Room } from './room.model';
 
@@ -13,9 +15,17 @@ import { Room } from './room.model';
 })
 export class RoomComponent implements OnInit {
   @HostBinding('attr.class') cssClass = 'row';
-  @Input() room!: Room;
+  @Input() room: Room;
+  @Output() edit = new EventEmitter<Room>();
+  @Output() delete = new EventEmitter<number>();
 
-  constructor() {}
+  onEdit() {
+    this.edit.emit(this.room);
+  }
 
-  ngOnInit() {}
+  onDelete() {
+    this.delete.emit(this.room.id);
+  }
+
+  ngOnInit() { }
 }
