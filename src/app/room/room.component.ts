@@ -6,7 +6,7 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import { Room } from './room.model';
+import { Room } from '../models/room.model';
 
 @Component({
   selector: '[app-room]',

@@ -1,8 +1,10 @@
 <div class="ui container">
   <h1 class="ui center aligned header">MetHotels Accommodations</h1>
   <app-bar></app-bar>
-  <app-room-table [rooms]="rooms" (editRoom)="setRoomForEdit($event)"
-    (deleteRoom)="deleteRoom($event)"></app-room-table>
-  <app-room-form [editRoom]="selectedRoom" (roomAdded)="createRoom($event)"
-    (roomUpdated)="updateRoom($event)"></app-room-form>
+  <router-outlet></router-outlet>
+  <footer class="ui vertical footer segment">
+    <div class="ui center aligned container">
+      © 2023. All rights reserved.
+    </div>
+  </footer>
 </div>

@@ -6,12 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bar.component.css'],
 })
 export class BarComponent implements OnInit {
-  selectedOption: string = '';
+  constructor() { }
 
-  selectOption(option: string): void {
-    this.selectedOption = option;
-  }
-
-  constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

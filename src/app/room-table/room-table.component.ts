@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Room } from '../room/room.model';
+import { Room } from '../models/room.model';
 
 @Component({
   selector: 'app-room-table',
@@ -11,11 +11,11 @@ export class RoomTableComponent {
   @Output() editRoom = new EventEmitter<Room>();
   @Output() deleteRoom = new EventEmitter<number>();
 
-  onEditRoom(room: Room) {
+  onEditRoom(room: Room): void {
     this.editRoom.emit(room);
   }
 
-  onDeleteRoom(id: number) {
+  onDeleteRoom(id: number): void {
     this.deleteRoom.emit(id);
   }
 }

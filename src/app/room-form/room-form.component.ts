@@ -5,7 +5,7 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { Room } from '../room/room.model';
+import { Room } from '../models/room.model';
 import { RoomService } from '../services/room.service';
 
 @Component({
@@ -91,18 +91,18 @@ export class RoomFormComponent implements OnInit {
   }
 
   createRoomObject(formValue: any) {
-
-    const room = new Room(
-      // kod mijenjanja postojeće sobe, dodijeli dosadašnji ID i cijenu
-      // inače dodijeli 0 i izračunatu cijenu 
+    // kod mijenjanja postojeće sobe, dodijeli dosadašnju cijenu, inače pozovi roomService 
+    const totalPrice: number = this.editRoom ? formValue.price : this.roomService.getPrice(
+      formValue.price,
+      formValue.numberOfNights,
+      this.extraCost
+    )
+    const room: Room = new Room(
+      // kod mijenjanja postojeće sobe, dodijeli dosadašnji ID, inače privremeno dodijeli 0
       this.editRoom ? this.editRoom.id : 0,
       formValue.name,
       formValue.beds,
-      this.editRoom ? formValue.price : this.roomService.getPrice(
-        formValue.price,
-        formValue.numberOfNights,
-        this.extraCost
-      ),
+      totalPrice,
       formValue.numberOfNights,
       formValue.wifi,
       formValue.airConditioning,

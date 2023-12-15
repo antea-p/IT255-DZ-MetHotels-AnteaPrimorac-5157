@@ -1,11 +1,7 @@
 <div class="ui menu">
-  <a class="item" (click)="selectOption('offers')">Offers</a>
-  <a class="item" (click)="selectOption('recommendations')">Recommendations</a>
-  <a class="item" (click)="selectOption('aboutUs')">About Us</a>
+  <a class="item" routerLink="/" routerLinkActive="">Homepage</a>
+  <a class="item" routerLink="/offers" routerLinkActive="active">Offers</a>
+  <a class="item" routerLink="/recommendations" routerLinkActive="active">Recommendations</a>
+  <a class="item" routerLink="/about-us" routerLinkActive="active">About Us</a>
+  <a class="item" routerLink="/admin" routerLinkActive="active">Admin CRUD</a>
 </div>
-
-<app-offers *ngIf="selectedOption === 'offers'"></app-offers>
-<app-recommendations
-  *ngIf="selectedOption === 'recommendations'"
-></app-recommendations>
-<app-about-us *ngIf="selectedOption === 'aboutUs'"></app-about-us>

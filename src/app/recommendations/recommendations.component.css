@@ -1,0 +1,42 @@
+.ui.list {
+    margin: 2em 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.item {
+    margin-bottom: 1.5em;
+    padding: 1.5em;
+    background: #fff;
+    border-left: 3px solid #4183c4;
+    /* Dodavanje vizualnog akcenta lijevom rubu */
+    border-radius: 0.3em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Stilizacija ikonice */
+.right.triangle.icon {
+    color: #4183c4;
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+.content {
+    display: inline-block;
+    /* Sadržaj će ovako "sjediti" do ikonice */
+}
+
+.header {
+    display: block;
+    /* Naslov će ovako ići u novi red*/
+    color: #333;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    /* Razmak između naslova i opisa */
+}
+
+.description {
+    font-size: 1em;
+    color: #666;
+}

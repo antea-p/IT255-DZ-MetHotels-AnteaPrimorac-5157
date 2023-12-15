@@ -1,21 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RecommendationsService } from '../services/recommendations.service';
+import { Recommendation } from '../models/recommendation.model';
 
 @Component({
   selector: 'app-recommendations',
   templateUrl: './recommendations.component.html',
   styleUrls: ['./recommendations.component.css'],
 })
-export class RecommendationsComponent {
-  recommendations = [
-    {
-      title: 'Gourmet Adventure',
-      description:
-        'Tantalize your taste buds with our award-winning cuisine. Warning: May cause drooling!',
-    },
-    {
-      title: 'City Safari',
-      description:
-        'Explore the urban jungle with our exclusive city tours. Keep your eyes peeled for the wild local life!',
-    },
-  ];
+export class RecommendationsComponent implements OnInit {
+  recommendations: Recommendation[] = [];
+
+  constructor(private recomService: RecommendationsService) { }
+
+  ngOnInit(): void {
+    this.recomService.getRecommendations().subscribe({
+      next: (data) => { this.recommendations = data; },
+      error: (error) => { console.error('Error fetching recommendations', error); }
+    });
+  }
 }

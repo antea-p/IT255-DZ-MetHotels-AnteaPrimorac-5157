@@ -2,25 +2,93 @@
   "rooms": [
     {
       "id": 1,
-      "name": "aaaaaaa",
+      "name": "aaaaaaaaaaaaaaaaaaaaaa",
       "beds": 1,
-      "price": 1,
-      "numberOfNights": 1,
+      "price": 13.99,
+      "numberOfNights": 2,
       "wifi": true,
-      "airConditioning": true,
-      "miniBar": false,
+      "airConditioning": false,
+      "miniBar": true,
       "sauna": false
     },
     {
       "id": 2,
-      "name": "aaaaaaccc",
-      "beds": 1,
-      "price": 13.99,
-      "numberOfNights": 3,
+      "name": "xxxammm",
+      "beds": 3,
+      "price": 21.99,
+      "numberOfNights": 2,
       "wifi": true,
       "airConditioning": true,
       "miniBar": null,
+      "sauna": true
+    },
+    {
+      "id": 4,
+      "name": "axsadsdsd",
+      "beds": 10,
+      "price": 10.99,
+      "numberOfNights": 1,
+      "wifi": null,
+      "airConditioning": null,
+      "miniBar": true,
       "sauna": null
+    }
+  ],
+  "offers": [
+    {
+      "title": "Sleep and Eat",
+      "description": "Who said there’s no such thing as a free lunch? We did. Because we're offering breakfast instead! Stay with us, and kick-start your day with a breakfast that not only competes with grandma’s cooking but could potentially make her jealous (don't tell her we said that). ",
+      "validUntil": "2023-12-31"
+    },
+    {
+      "title": "Weekend Escape",
+      "description": "Escape the ordinary! Or just escape. Either way, we’ve got not just a cozy bed, but an entire experience waiting for you. Our 'Weekend Escape' is your ticket to a mini-vacation, where relaxation meets excitement!",
+      "validUntil": "2023-11-30"
+    },
+    {
+      "title": "Sleep and Eat Extravaganza!",
+      "description": "Who says there's no such thing as a free meal? Here at Met Hotels, we disagree! Book a stay with us, and we'll throw in a breakfast that rivals grandma’s secret recipe. Indulge in fluffy pancakes, sizzling bacon, and more - all on the house!",
+      "validUntil": "2023-12-31"
+    },
+    {
+      "title": "Weekend Warrior Retreat",
+      "description": "Tired of the same old, same old? Break free from the mundane with our 'Weekend Warrior' escape! We've got the coziest beds to crash in after your daring adventures. Whether you're a thrill-seeker or a chill-seeker, we've got you covered. ",
+      "validUntil": "2023-12-21"
+    },
+    {
+      "title": "Midweek Mystery Getaway",
+      "description": "Why wait for the weekend? With our 'Midweek Mystery' offer, you can be the star of your own adventure any day of the week. Each stay comes with a surprise - it could be a room upgrade, a complimentary spa session, or even a treasure map (okay, maybe not a treasure map).",
+      "validUntil": "2023-12-15"
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "Gourmet Adventure",
+      "description": "Tantalize your taste buds with our award-winning cuisine. Our award-winning chefs are culinary wizards, turning fresh, local ingredients into masterpieces that will make your taste buds do a happy dance. Warning: Side effects may include drooling and an insatiable desire to take photos of your food. It's not just a meal; it's an epic saga of flavor!"
+    },
+    {
+      "title": "City Safari",
+      "description": "Explore the urban jungle with our exclusive city tours. We'll guide you through hidden gems and famous landmarks, each with a story that's waiting to be discovered. Keep your eyes peeled for the wild, quirky, and absolutely fascinating local life. It's part adventure, part cultural deep-dive, and 100% unforgettable. Binoculars not required, but a sense of wonder is!"
+    },
+    {
+      "title": "Starlight Serenade",
+      "description": "Experience the magic of the night under the stars with our 'Starlight Serenade'. We'll whisk you away to a secret spot where the sky is a canvas of twinkling lights. Enjoy a cozy blanket, a glass of fine wine, and a playlist of soothing tunes. Perfect for a romantic evening or a peaceful solo retreat. Stars in the sky are included at no extra charge!"
+    },
+    {
+      "title": "Wellness Wonderland",
+      "description": "Welcome to our 'Wellness Wonderland', where relaxation and rejuvenation are the orders of the day. Indulge in spa treatments that will leave you feeling like royalty, partake in yoga sessions with breathtaking views, and savor healthy, delicious meals that nourish body and soul. It's your personal oasis of calm in the midst of life's hustle and bustle."
+    },
+    {
+      "title": "Time-Traveler's Tour",
+      "description": "Step into the past with our 'Time-Traveler's Tour'! We'll guide you through historical landmarks and tales that bring history to life. From ancient ruins to hidden historic cafes, each step is a journey through time. It's not just a tour; it's a thrilling leap into the stories that shaped our world. History buffs and curious souls, this one's for you!"
+    },
+    {
+      "title": "Artistic Awakening",
+      "description": "Unleash your inner artist with our 'Artistic Awakening'. Explore local art scenes, participate in creative workshops, and meet inspiring artists. Whether you're an art aficionado or just looking for a splash of creativity, this experience will paint your stay with vibrant colors and unforgettable memories. It's time to create and be inspired!"
+    },
+    {
+      "title": "Eco Explorer",
+      "description": "Embrace the call of the wild with our 'Eco Explorer' package. Trek through stunning landscapes, learn about local flora and fauna, and engage in conservation efforts. It's an eco-adventure that not only quenches your thirst for adventure but also contributes to preserving the beauty of our planet. Nature is calling, will you answer?"
     }
   ]
 }

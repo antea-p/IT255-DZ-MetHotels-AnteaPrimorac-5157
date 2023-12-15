@@ -13,6 +13,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { RoomFormComponent } from './room-form/room-form.component';
 import { RoomService } from './services/room.service';
 import { RoomTableComponent } from './room-table/room-table.component';
+import { HomeComponent } from './home/home.component';
+import { OffersService } from './services/offers.service';
+import { AdminCRUDComponent } from './admin-crud/admin-crud.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,11 @@ import { RoomTableComponent } from './room-table/room-table.component';
     OffersComponent,
     RecommendationsComponent,
     AboutUsComponent,
+    HomeComponent,
+    AdminCRUDComponent,
   ],
   imports: [HttpClientModule, BrowserModule, ReactiveFormsModule, AppRoutingModule],
-  providers: [RoomService],
+  providers: [RoomService, OffersService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
