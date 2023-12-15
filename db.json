@@ -9,7 +9,8 @@
       "wifi": true,
       "airConditioning": false,
       "miniBar": true,
-      "sauna": false
+      "sauna": false,
+      "description": "test test test"
     },
     {
       "id": 2,
@@ -20,7 +21,8 @@
       "wifi": true,
       "airConditioning": true,
       "miniBar": null,
-      "sauna": true
+      "sauna": true,
+      "description": "test 2 test 2 test 2"
     },
     {
       "id": 4,
@@ -31,7 +33,8 @@
       "wifi": null,
       "airConditioning": null,
       "miniBar": true,
-      "sauna": null
+      "sauna": null,
+      "description": "test 3 test 3 test 3"
     }
   ],
   "offers": [

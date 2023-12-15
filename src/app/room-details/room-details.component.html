@@ -1,0 +1,59 @@
+<div *ngIf="roomDetails$ | async as roomDetails; else loading">
+    <h2 class="ui center aligned header">{{ roomDetails.name }}</h2>
+    <div class="ui raised segment">
+        <div class="ui two column very relaxed grid">
+            <div class="column">
+                <div class="ui list">
+                    <div class="item">
+                        <i class="bed icon"></i>
+                        <div class="content">
+                            <div class="header">Beds</div>
+                            <div class="description">{{ roomDetails.beds }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="{{ roomDetails.wifi ? 'checkmark green' : 'remove red' }} icon"></i>
+                        WiFi
+                    </div>
+                    <div class="item">
+                        <i class="{{ roomDetails.airConditioning ? 'checkmark green' : 'remove red' }} icon"></i>
+                        A/C
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui list">
+                    <div class="item">
+                        <i class="dollar sign icon"></i>
+                        <div class="content">
+                            <div class="header">Price per night</div>
+                            <div class="description">{{ (roomDetails.price / roomDetails.numberOfNights) | currency }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="{{ roomDetails.miniBar ? 'checkmark green' : 'remove red' }} icon"></i>
+                        Mini Bar
+                    </div>
+                    <div class="item">
+                        <i class="{{ roomDetails.sauna ? 'checkmark green' : 'remove red' }} icon"></i>
+                        Sauna
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui vertical divider">
+            And
+        </div>
+    </div>
+    <div class="ui segment center aligned">
+        <h3 class="ui header">Description</h3>
+        <p>{{ roomDetails.description }}</p>
+        <button class="ui large compact green button" (click)="onClick()">Book Now!</button>
+    </div>
+</div>
+<ng-template #loading>
+    <div class="ui segment center aligned">
+        <p>Loading room details...</p>
+    </div>
+</ng-template>

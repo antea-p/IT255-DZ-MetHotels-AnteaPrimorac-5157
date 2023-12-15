@@ -9,6 +9,7 @@ export class Room {
     public wifi: boolean,
     public airConditioning: boolean,
     public miniBar: boolean,
-    public sauna: boolean
-  ) {}
+    public sauna: boolean,
+    public description: string,
+  ) { }
 }

@@ -5,6 +5,8 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HomeComponent } from './home/home.component';
 import { AdminCRUDComponent } from './admin-crud/admin-crud.component';
+import { RoomComponent } from './room/room.component';
+import { RoomDetailsComponent } from './room-details/room-details.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,11 @@ const routes: Routes = [
     path: 'admin',
     component: AdminCRUDComponent,
     title: 'Admin CRUD',
+  },
+  {
+    path: 'room/:id',
+    component: RoomDetailsComponent,
+    title: 'Room details',
   },
 ];
 

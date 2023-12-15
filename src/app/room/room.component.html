@@ -3,11 +3,14 @@
 <td>{{ room.beds }}</td>
 <td>${{ room.price.toFixed(2) }}</td>
 <td>{{ room.numberOfNights }}</td>
-<td>{{ room.wifi ? '✅' : '' }}</td>
-<td>{{ room.airConditioning ? '✅' : '' }}</td>
-<td>{{ room.miniBar ? '✅' : '' }}</td>
-<td>{{ room.sauna ? '✅' : '' }}</td>
+<td><i class="{{ room.wifi ? 'check circle outline' : 'circle outline' }} icon"></i></td>
+<td><i class="{{ room.airConditioning ? 'check circle outline' : 'circle outline' }} icon"></i></td>
+<td><i class="{{ room.miniBar ? 'check circle outline' : 'circle outline' }} icon"></i></td>
+<td><i class="{{ room.sauna ? 'check circle outline' : 'circle outline' }} icon"></i></td>
 <td>
-    <button class="ui small compact left primary button" (click)="onEdit()">Edit</button>
-    <button class="ui small compact right button" (click)="onDelete()">Delete</button>
+    <button class="ui small compact button" [routerLink]="['/room', room.id]">
+        <i class="eye icon"></i>Details...
+    </button>
+    <button class="ui small compact primary button" (click)="onEdit()">Edit</button>
+    <button class="ui small compact negative button" (click)="onDelete()">Delete</button>
 </td>

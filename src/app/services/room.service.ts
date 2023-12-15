@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Room } from '../models/room.model';
 
 @Injectable({
@@ -23,8 +23,8 @@ export class RoomService {
   }
 
   public getRoom(id: number): Observable<Room> {
-    return this.httpClient.get(`${this.baseUrl}/${id}`).pipe(
-      map((data: any) => this.createRoomFromObject(data)),
+    return this.httpClient.get<Room>(`${this.baseUrl}/${id}`).pipe(
+      map(data => this.createRoomFromObject(data))
     );
   }
 
@@ -55,7 +55,8 @@ export class RoomService {
       item.wifi,
       item.airConditioning,
       item.miniBar,
-      item.sauna
+      item.sauna,
+      item.description
     );
   }
 }

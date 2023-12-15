@@ -19,6 +19,10 @@ export class AdminCRUDComponent {
   constructor(private roomService: RoomService) { }
 
   ngOnInit(): void {
+    this.getRooms();
+  }
+
+  getRooms(): void {
     this.roomService.getRooms().subscribe((data) => {
       this.rooms = data;
       if (this.rooms.length > 0) {

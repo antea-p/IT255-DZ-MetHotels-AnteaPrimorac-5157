@@ -45,6 +45,7 @@ export class RoomFormComponent implements OnInit {
       airConditioning: [false],
       miniBar: [false],
       sauna: [false],
+      description: ['', [Validators.required, Validators.minLength(5)]]
     });
     this.nameControl = this.roomForm.get('name') as FormControl;
   }
@@ -107,7 +108,8 @@ export class RoomFormComponent implements OnInit {
       formValue.wifi,
       formValue.airConditioning,
       formValue.miniBar,
-      formValue.sauna
+      formValue.sauna,
+      formValue.description,
     );
 
     // emitiraj roditeljskoj komponenti odgovarajući događaj

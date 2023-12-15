@@ -81,6 +81,23 @@
     </div>
   </div>
 
+  <div class="field" [class.error]="
+  roomForm.get('description')?.invalid &&
+  (roomForm.get('description')?.dirty || roomForm.get('description')?.touched)
+  ">
+    <label for="description">Room description</label>
+    <input type="text" id="description" formControlName="description" required />
+    <div
+      *ngIf="roomForm.get('description')?.errors?.['required'] && (roomForm.get('description')?.dirty || roomForm.get('description')?.touched)"
+      class="ui pointing red basic label">
+      Room description is required.
+    </div>
+    <div
+      *ngIf="roomForm.get('description')?.errors?.['minlength'] && (roomForm.get('description')?.dirty || roomForm.get('description')?.touched)"
+      class="ui pointing red basic label">
+      Room description must be at least 5 characters.
+    </div>
+  </div>
 
   <div class="field">
     <div class="ui checkbox">
