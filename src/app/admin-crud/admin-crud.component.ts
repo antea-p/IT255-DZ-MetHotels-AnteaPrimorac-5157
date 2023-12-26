@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Room } from '../models/room.model';
 import { RoomFormComponent } from '../room-form/room-form.component';
 import { RoomService } from '../services/room.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/room.state';
+import { selectAllRooms } from '../store/room.selectors';
 
 @Component({
   selector: 'app-admin-crud',
@@ -16,11 +19,18 @@ export class AdminCRUDComponent {
   @ViewChild(RoomFormComponent)
   roomFormComponent: RoomFormComponent;
 
-  constructor(private roomService: RoomService) { }
+  constructor(private roomService: RoomService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.getRooms();
+    this.store.select(selectAllRooms).subscribe(rooms => {
+      this.rooms = rooms;
+      if (this.rooms.length > 0) {
+        this.nextId = Math.max(...this.rooms.map(r => r.id)) + 1;
+      }
+    });
+    this.getRooms(); // Trigger initial load of rooms
   }
+
 
   getRooms(): void {
     this.roomService.getRooms().subscribe((data) => {
@@ -34,13 +44,12 @@ export class AdminCRUDComponent {
   createRoom(newRoom: Room) {
     if (this.validateRoom(newRoom)) {
       newRoom.id = this.nextId++;
-      this.roomService.createRoom(newRoom).subscribe((data) => {
-        this.rooms.push(data);
-      });
+      this.roomService.createRoom(newRoom).subscribe();
     } else {
       alert('Invalid room data');
     }
   }
+
 
   setRoomForEdit(room: Room) {
     this.selectedRoom = room;

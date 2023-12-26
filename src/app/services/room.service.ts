@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { Room } from '../models/room.model';
 import { AppState } from '../store/room.state';
 import { Store } from '@ngrx/store';
@@ -47,10 +47,15 @@ export class RoomService {
   }
 
   public createRoom(room: Room): Observable<Room> {
-    return this.httpClient.post(this.baseUrl, room).pipe(
+    return this.httpClient.post<Room>(this.baseUrl, room).pipe(
       map((data: any) => this.createRoomFromObject(data)),
+      tap(newRoom => {
+        this.store.dispatch(addRoom({ room: newRoom }));
+      })
     );
   }
+
+
 
   createRoomFromObject(item: any): Room {
     return new Room(item.id,

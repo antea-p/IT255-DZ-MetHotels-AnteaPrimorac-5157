@@ -23,6 +23,30 @@
       "miniBar": true,
       "sauna": null,
       "description": "test 3 test 3 test 3"
+    },
+    {
+      "id": 5,
+      "name": "fffffff",
+      "beds": 9,
+      "price": 1,
+      "numberOfNights": 1,
+      "wifi": true,
+      "airConditioning": false,
+      "miniBar": false,
+      "sauna": false,
+      "description": "dfdfdfd"
+    },
+    {
+      "id": 6,
+      "name": "aaaaaaaaa",
+      "beds": 2,
+      "price": 3,
+      "numberOfNights": 1,
+      "wifi": true,
+      "airConditioning": false,
+      "miniBar": false,
+      "sauna": false,
+      "description": "aaaaaaaaaaaaa"
     }
   ],
   "offers": [
