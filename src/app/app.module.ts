@@ -17,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { OffersService } from './services/offers.service';
 import { AdminCRUDComponent } from './admin-crud/admin-crud.component';
 import { RoomDetailsComponent } from './room-details/room-details.component';
+import { StoreModule } from '@ngrx/store';
+import { roomReducer } from './store/room.reducer';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { RoomDetailsComponent } from './room-details/room-details.component';
     AdminCRUDComponent,
     RoomDetailsComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, ReactiveFormsModule, AppRoutingModule],
+  imports: [HttpClientModule, BrowserModule, ReactiveFormsModule, AppRoutingModule,
+    StoreModule.forRoot({ rooms: roomReducer })],
   providers: [RoomService, OffersService],
   bootstrap: [AppComponent],
 })

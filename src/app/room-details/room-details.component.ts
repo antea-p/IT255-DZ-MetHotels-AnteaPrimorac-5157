@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomService } from '../services/room.service';
 import { Room } from '../models/room.model';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../store/room.state';
+import { selectRoomById } from '../store/room.selectors';
 
 @Component({
   selector: 'app-room-details',
@@ -10,9 +13,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./room-details.component.css']
 })
 export class RoomDetailsComponent implements OnInit {
-  roomDetails$: Observable<Room>;
+  roomDetails$: Observable<Room | undefined>;
 
-  constructor(private route: ActivatedRoute, private roomService: RoomService) { }
+  constructor(private route: ActivatedRoute, private roomService: RoomService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.getRoom();
@@ -21,7 +24,9 @@ export class RoomDetailsComponent implements OnInit {
   getRoom(): void {
     const roomId = +this.route.snapshot.paramMap.get('id')!;
     console.log(`roomID: ${roomId}`);
-    this.roomDetails$ = this.roomService.getRoom(roomId);
+    this.roomService.getRoom(roomId);
+    this.roomDetails$ = this.store.select(selectRoomById(roomId));
+    console.log("Successfully used selector!")
   }
 
   onClick() {

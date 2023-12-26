@@ -1,18 +1,6 @@
 {
   "rooms": [
     {
-      "id": 1,
-      "name": "aaaaaaaaaaaaaaaaaaaaaa",
-      "beds": 1,
-      "price": 13.99,
-      "numberOfNights": 2,
-      "wifi": true,
-      "airConditioning": false,
-      "miniBar": true,
-      "sauna": false,
-      "description": "test test test"
-    },
-    {
       "id": 2,
       "name": "xxxammm",
       "beds": 3,
