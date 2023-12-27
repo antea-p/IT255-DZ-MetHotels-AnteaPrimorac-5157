@@ -19,6 +19,7 @@ import { AdminCRUDComponent } from './admin-crud/admin-crud.component';
 import { RoomDetailsComponent } from './room-details/room-details.component';
 import { StoreModule } from '@ngrx/store';
 import { roomReducer } from './store/room.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { roomReducer } from './store/room.reducer';
     RoomDetailsComponent,
   ],
   imports: [HttpClientModule, BrowserModule, ReactiveFormsModule, AppRoutingModule,
-    StoreModule.forRoot({ rooms: roomReducer })],
+    StoreModule.forRoot({ rooms: roomReducer }),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+  ],
   providers: [RoomService, OffersService],
   bootstrap: [AppComponent],
 })

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Room } from '../models/room.model';
 import { AppState } from '../store/room.state';
 import { Store } from '@ngrx/store';
-import { addRoom } from '../store/room.actions';
+import { addRoom, deleteRoom, setRooms } from '../store/room.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,20 @@ import { addRoom } from '../store/room.actions';
 export class RoomService {
   private baseUrl = 'http://localhost:3000/rooms';
 
-  constructor(private httpClient: HttpClient, private store: Store<AppState>) { }
+  constructor(private httpClient: HttpClient, private store: Store<AppState>) {
+    this.loadInitialData();
+  }
+
+  private loadInitialData(): void {
+    console.log("LoadInitialData called!")
+    this.httpClient.get<Room[]>(this.baseUrl).pipe(
+      map(data => data.map(this.createRoomFromObject)),
+      tap(rooms => {
+        console.log('Dispatching setRooms with:', rooms);
+        this.store.dispatch(setRooms({ rooms }));
+      })
+    ).subscribe();
+  }
 
   getPrice(basePrice: number, numberOfNights: number, extraCost: number): number {
     return basePrice * numberOfNights + extraCost;
@@ -40,9 +53,12 @@ export class RoomService {
     );
   }
 
-  public deleteRoom(id: number): Observable<Room> {
+  public deleteRoom(id: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/${id}`).pipe(
-      map((data: any) => this.createRoomFromObject(data)),
+      tap(() => {
+        this.store.dispatch(deleteRoom({ id }));
+        console.log(`Store: ${this.store}`)
+      })
     );
   }
 
