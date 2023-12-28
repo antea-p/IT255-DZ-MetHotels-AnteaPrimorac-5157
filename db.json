@@ -10,11 +10,28 @@
       "airConditioning": false,
       "miniBar": false,
       "sauna": false,
-      "description": "aaaaaaaaaaaaa"
+      "description": "aaaaaaaaaaaaa",
+      "tasks": [
+        {
+          "id": "t1",
+          "title": "Replace towels",
+          "completed": true
+        },
+        {
+          "id": "t2",
+          "title": "Refill minibar",
+          "completed": false
+        },
+        {
+          "id": "t3",
+          "title": "Renew guest amenities",
+          "completed": false
+        }
+      ]
     },
     {
       "id": 7,
-      "name": "vvvvvva",
+      "name": "vvvvvvac",
       "beds": 1,
       "price": 5.99,
       "numberOfNights": 1,
@@ -22,7 +39,8 @@
       "airConditioning": true,
       "miniBar": false,
       "sauna": false,
-      "description": "sssssssssssasasas"
+      "description": "sssssssssssasasas",
+      "tasks": []
     },
     {
       "id": 8,
@@ -34,7 +52,8 @@
       "airConditioning": false,
       "miniBar": true,
       "sauna": false,
-      "description": "asdsdsdsd"
+      "description": "asdsdsdsd",
+      "tasks": []
     }
   ],
   "offers": [

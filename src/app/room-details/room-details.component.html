@@ -42,14 +42,33 @@
                 </div>
             </div>
         </div>
-        <div class="ui vertical divider">
-            And
+        <div class="ui container center aligned description-container">
+            <h3 class="ui header">Description</h3>
+            <p>{{ roomDetails.description }}</p>
         </div>
+        <div class="ui raised" *ngIf="roomDetails.tasks.length">
+            <h3 class="ui dividing header">Tasks</h3>
+            <div class="ui relaxed divided list">
+                <div class="item" *ngFor="let task of roomDetails.tasks">
+                    <i class="{{ task.completed ? 'check circle outline icon' : 'circle outline icon' }}"></i>
+                    <div class="content">
+                        <div class="header">{{ task.title }}</div>
+                        <div class="description">{{ task.completed ? 'Completed' : 'Not Completed' }}</div>
+                        <!-- Buttons for marking tasks as complete or incomplete -->
+                        <button class="ui icon button" (click)="markTaskAsComplete(task.id)">
+                            <i class="checkmark icon"></i>
+                        </button>
+                        <button class="ui icon button" (click)="markTaskAsIncomplete(task.id)">
+                            <i class="remove icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="ui segment center aligned">
-        <h3 class="ui header">Description</h3>
-        <p>{{ roomDetails.description }}</p>
-        <button class="ui large compact green button" (click)="onClick()">Book Now!</button>
+    <div class="ui container center aligned">
+        <button class="ui large green button" (click)="onClick()">Book Now!</button>
     </div>
 </div>
 <ng-template #loading>

@@ -1,3 +1,5 @@
+import { Task } from "./task.model";
+
 export class Room {
   constructor(
     // sintakticki secer za manji konstruktor
@@ -11,5 +13,6 @@ export class Room {
     public miniBar: boolean,
     public sauna: boolean,
     public description: string,
+    public tasks: Task[] = []
   ) { }
 }

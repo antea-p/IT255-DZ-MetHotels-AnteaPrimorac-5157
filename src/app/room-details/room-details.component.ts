@@ -22,7 +22,24 @@ export class RoomDetailsComponent implements OnInit {
     const roomId = +this.route.snapshot.paramMap.get('id')!;
     console.log(`Fetching details for roomID: ${roomId}`);
     this.roomDetails$ = this.roomService.getRoom(roomId);
+
+    this.roomDetails$.subscribe(room => {
+      if (room) {
+        console.log('Array of tasks:', room.tasks);
+      }
+    });
   }
+
+  markTaskAsComplete(taskId: string): void {
+    console.log(`Marking task ${taskId} as complete`);
+    // TODO: Dispatch an NgRx action to mark the task as complete
+  }
+
+  markTaskAsIncomplete(taskId: string): void {
+    console.log(`Marking task ${taskId} as incomplete`);
+    // TODO: Dispatch an NgRx action to mark the task as incomplete
+  }
+
 
   onClick(): void {
     alert("Sorry, Met Hotels doesn't accept bookings yet!")

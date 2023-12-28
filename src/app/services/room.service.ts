@@ -83,7 +83,8 @@ export class RoomService {
       item.airConditioning,
       item.miniBar,
       item.sauna,
-      item.description
+      item.description,
+      item.tasks
     );
   }
 }

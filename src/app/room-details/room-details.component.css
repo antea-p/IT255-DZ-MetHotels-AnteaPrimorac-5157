@@ -1,0 +1,11 @@
+.description-container {
+    padding-top: 20px;
+}
+
+.item .circle.outline.icon {
+    color: #db2828;
+}
+
+.item .check.circle.outline.icon {
+    color: #21ba45;
+}
