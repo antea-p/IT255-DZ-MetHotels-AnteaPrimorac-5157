@@ -1,20 +1,8 @@
 {
   "rooms": [
     {
-      "id": 5,
-      "name": "fffffff",
-      "beds": 9,
-      "price": 1,
-      "numberOfNights": 1,
-      "wifi": true,
-      "airConditioning": false,
-      "miniBar": false,
-      "sauna": false,
-      "description": "dfdfdfd"
-    },
-    {
       "id": 6,
-      "name": "aaaaaaaaa",
+      "name": "aaaaaaaaaf",
       "beds": 2,
       "price": 3,
       "numberOfNights": 1,
@@ -23,6 +11,30 @@
       "miniBar": false,
       "sauna": false,
       "description": "aaaaaaaaaaaaa"
+    },
+    {
+      "id": 7,
+      "name": "vvvvvva",
+      "beds": 1,
+      "price": 5.99,
+      "numberOfNights": 1,
+      "wifi": true,
+      "airConditioning": true,
+      "miniBar": false,
+      "sauna": false,
+      "description": "sssssssssssasasas"
+    },
+    {
+      "id": 8,
+      "name": "aaaaaaaaaaa",
+      "beds": 1,
+      "price": 10.99,
+      "numberOfNights": 1,
+      "wifi": true,
+      "airConditioning": false,
+      "miniBar": true,
+      "sauna": false,
+      "description": "asdsdsdsd"
     }
   ],
   "offers": [
