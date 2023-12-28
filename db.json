@@ -18,13 +18,13 @@
           "completed": true
         },
         {
-          "id": "t2",
-          "title": "Refill minibar",
-          "completed": false
+          "id": "c58yhoy",
+          "title": "aaa",
+          "completed": true
         },
         {
-          "id": "t3",
-          "title": "Renew guest amenities",
+          "id": "jqel561",
+          "title": "aa",
           "completed": false
         }
       ]
@@ -54,6 +54,25 @@
       "sauna": false,
       "description": "asdsdsdsd",
       "tasks": []
+    },
+    {
+      "id": 9,
+      "name": "aaazzz",
+      "beds": 4,
+      "price": 1,
+      "numberOfNights": 1,
+      "wifi": true,
+      "airConditioning": false,
+      "miniBar": false,
+      "sauna": false,
+      "description": "    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "tasks": [
+        {
+          "id": "o7g1r6d",
+          "title": "Deliver food",
+          "completed": true
+        }
+      ]
     }
   ],
   "offers": [

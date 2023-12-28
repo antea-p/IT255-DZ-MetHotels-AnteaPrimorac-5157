@@ -42,30 +42,43 @@
                 </div>
             </div>
         </div>
-        <div class="ui container center aligned description-container">
+        <div class="ui raised">
             <h3 class="ui header">Description</h3>
             <p>{{ roomDetails.description }}</p>
         </div>
+
         <div class="ui raised" *ngIf="roomDetails.tasks.length">
             <h3 class="ui dividing header">Tasks</h3>
             <div class="ui relaxed divided list">
-                <div class="item" *ngFor="let task of roomDetails.tasks">
-                    <i class="{{ task.completed ? 'check circle outline icon' : 'circle outline icon' }}"></i>
+                <div class="item" *ngFor="let task of roomDetails.tasks; let i = index">
+                    <i class="{{ task.completed ? 'check circle outline green icon' : 'circle outline red icon' }}"></i>
                     <div class="content">
                         <div class="header">{{ task.title }}</div>
                         <div class="description">{{ task.completed ? 'Completed' : 'Not Completed' }}</div>
-                        <!-- Buttons for marking tasks as complete or incomplete -->
-                        <button class="ui icon button" (click)="markTaskAsComplete(task.id)">
+                        <!-- Use green for the complete button and red for the incomplete button -->
+                        <button class="ui icon green button" (click)="markTaskAsComplete(task.id)"
+                            [class.disabled]="task.completed" title="Mark as complete">
                             <i class="checkmark icon"></i>
                         </button>
-                        <button class="ui icon button" (click)="markTaskAsIncomplete(task.id)">
+                        <button class="ui icon red button" (click)="markTaskAsIncomplete(task.id)"
+                            [class.disabled]="!task.completed" title="Mark as incomplete">
                             <i class="remove icon"></i>
+                        </button>
+                        <!-- Delete button remains unchanged -->
+                        <button class="ui icon button" (click)="deleteTask(task.id)" title="Delete task">
+                            <i class="trash alternate outline icon"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="ui raised">
+            <h3 class="ui dividing header">Add New Task</h3>
+            <div class="ui action input">
+                <input type="text" placeholder="Enter new task..." #newTaskTitle>
+                <button class="ui button" (click)="addNewTask(newTaskTitle.value)">Add Task</button>
+            </div>
+        </div>
     </div>
     <div class="ui container center aligned">
         <button class="ui large green button" (click)="onClick()">Book Now!</button>

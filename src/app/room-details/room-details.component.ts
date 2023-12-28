@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RoomService } from '../services/room.service';
 import { Room } from '../models/room.model';
-import { Observable } from 'rxjs';
+import { Observable, filter, take, tap } from 'rxjs';
+import { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-room-details',
@@ -20,24 +21,80 @@ export class RoomDetailsComponent implements OnInit {
 
   getRoom(): void {
     const roomId = +this.route.snapshot.paramMap.get('id')!;
-    console.log(`Fetching details for roomID: ${roomId}`);
-    this.roomDetails$ = this.roomService.getRoom(roomId);
-
-    this.roomDetails$.subscribe(room => {
-      if (room) {
-        console.log('Array of tasks:', room.tasks);
-      }
+    this.roomDetails$ = this.roomService.getRoom(roomId).pipe(
+      tap(room => {
+        if (room) {
+          console.log('Array of tasks:', room.tasks);
+        }
+      })
+    );
+  }
+  markTaskAsComplete(taskId: string): void {
+    // Retrieve the current room details
+    this.roomDetails$.pipe(
+      take(1),
+      filter(Boolean) // Ensure the room is not undefined
+    ).subscribe(roomDetails => {
+      const updatedTasks = roomDetails.tasks.map(task =>
+        task.id === taskId ? { ...task, completed: true } : task
+      );
+      const updatedRoom = { ...roomDetails, tasks: updatedTasks };
+      this.roomService.updateRoom(updatedRoom);
     });
   }
 
-  markTaskAsComplete(taskId: string): void {
-    console.log(`Marking task ${taskId} as complete`);
-    // TODO: Dispatch an NgRx action to mark the task as complete
+  markTaskAsIncomplete(taskId: string): void {
+    // Retrieve the current room details
+    this.roomDetails$.pipe(
+      take(1),
+      filter(Boolean) // Ensure the room is not undefined
+    ).subscribe(roomDetails => {
+      const updatedTasks = roomDetails.tasks.map(task =>
+        task.id === taskId ? { ...task, completed: false } : task
+      );
+      const updatedRoom = { ...roomDetails, tasks: updatedTasks };
+      this.roomService.updateRoom(updatedRoom);
+    });
   }
 
-  markTaskAsIncomplete(taskId: string): void {
-    console.log(`Marking task ${taskId} as incomplete`);
-    // TODO: Dispatch an NgRx action to mark the task as incomplete
+  addNewTask(title: string): void {
+    if (!title) {
+      alert('Task title cannot be empty.');
+      return;
+    }
+    this.roomDetails$.pipe(
+      take(1),
+      filter(Boolean) // Ensure the room is not undefined
+    ).subscribe(roomDetails => {
+      const newTask: Task = {
+        id: this.generateTaskId(), // A method to generate a unique task ID
+        title,
+        completed: false
+      };
+      const updatedRoom = {
+        ...roomDetails,
+        tasks: [...roomDetails.tasks, newTask]
+      };
+      this.roomService.updateRoom(updatedRoom);
+    });
+  }
+
+
+
+  deleteTask(taskId: string): void {
+    this.roomDetails$.pipe(
+      take(1),
+      filter(Boolean) // Ensure the room is not undefined
+    ).subscribe(roomDetails => {
+      const updatedTasks = roomDetails.tasks.filter(task => task.id !== taskId);
+      const updatedRoom = { ...roomDetails, tasks: updatedTasks };
+      this.roomService.updateRoom(updatedRoom);
+    });
+  }
+
+  private generateTaskId(): string {
+    // Placeholder for task ID generation logic
+    return Math.random().toString(36).substring(2, 9);
   }
 
 
