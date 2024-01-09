@@ -110,6 +110,7 @@ export class RoomFormComponent implements OnInit {
       formValue.miniBar,
       formValue.sauna,
       formValue.description,
+      this.editRoom?.tasks
     );
 
     // emitiraj roditeljskoj komponenti odgovarajući događaj

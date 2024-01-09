@@ -46,26 +46,18 @@
             <h3 class="ui header">Description</h3>
             <p>{{ roomDetails.description }}</p>
         </div>
-
         <div class="ui raised" *ngIf="roomDetails.tasks.length">
             <h3 class="ui dividing header">Tasks</h3>
             <div class="ui relaxed divided list">
-                <div class="item" *ngFor="let task of roomDetails.tasks; let i = index">
-                    <i class="{{ task.completed ? 'check circle outline green icon' : 'circle outline red icon' }}"></i>
-                    <div class="content">
-                        <div class="header">{{ task.title }}</div>
-                        <div class="description">{{ task.completed ? 'Completed' : 'Not Completed' }}</div>
-                        <!-- Use green for the complete button and red for the incomplete button -->
-                        <button class="ui icon green button" (click)="markTaskAsComplete(task.id)"
-                            [class.disabled]="task.completed" title="Mark as complete">
-                            <i class="checkmark icon"></i>
-                        </button>
-                        <button class="ui icon red button" (click)="markTaskAsIncomplete(task.id)"
-                            [class.disabled]="!task.completed" title="Mark as incomplete">
-                            <i class="remove icon"></i>
-                        </button>
-                        <!-- Delete button remains unchanged -->
-                        <button class="ui icon button" (click)="deleteTask(task.id)" title="Delete task">
+                <div class="item" *ngFor="let task of roomDetails.tasks">
+                    <i class="{{ task.completed ? 'check circle outline icon' : 'circle outline icon' }} task-clickable"
+                        (click)="toggleTaskStatus(task)"></i>
+                    <div class="content task-clickable">
+                        <div (click)="toggleTaskStatus(task)">
+                            <div class="header">{{ task.title }}</div>
+                            <div class="description">{{ task.completed ? 'Completed' : 'Not Completed' }}</div>
+                        </div>
+                        <button class="ui icon button" (click)="deleteTask(task.id)">
                             <i class="trash alternate outline icon"></i>
                         </button>
                     </div>

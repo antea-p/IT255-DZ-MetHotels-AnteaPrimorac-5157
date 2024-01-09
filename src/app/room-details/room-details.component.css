@@ -9,3 +9,8 @@
 .ui.raised {
     padding-top: 30px;
 }
+
+/* Vizualni hint korisniku da može kliknuti na zadatak (da promijeni status) */
+.task-clickable {
+    cursor: pointer;
+}

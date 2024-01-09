@@ -11,6 +11,7 @@ import { Task } from '../models/task.model';
   styleUrls: ['./room-details.component.css']
 })
 export class RoomDetailsComponent implements OnInit {
+
   roomDetails$: Observable<Room | undefined>;
 
   constructor(private route: ActivatedRoute, private roomService: RoomService) { }
@@ -29,28 +30,14 @@ export class RoomDetailsComponent implements OnInit {
       })
     );
   }
-  markTaskAsComplete(taskId: string): void {
-    // Retrieve the current room details
-    this.roomDetails$.pipe(
-      take(1),
-      filter(Boolean) // Ensure the room is not undefined
-    ).subscribe(roomDetails => {
-      const updatedTasks = roomDetails.tasks.map(task =>
-        task.id === taskId ? { ...task, completed: true } : task
-      );
-      const updatedRoom = { ...roomDetails, tasks: updatedTasks };
-      this.roomService.updateRoom(updatedRoom);
-    });
-  }
 
-  markTaskAsIncomplete(taskId: string): void {
-    // Retrieve the current room details
+  toggleTaskStatus(task: Task): void {
     this.roomDetails$.pipe(
       take(1),
       filter(Boolean) // Ensure the room is not undefined
     ).subscribe(roomDetails => {
-      const updatedTasks = roomDetails.tasks.map(task =>
-        task.id === taskId ? { ...task, completed: false } : task
+      const updatedTasks = roomDetails.tasks.map(t =>
+        t.id === task.id ? { ...t, completed: !t.completed } : t
       );
       const updatedRoom = { ...roomDetails, tasks: updatedTasks };
       this.roomService.updateRoom(updatedRoom);
@@ -79,8 +66,6 @@ export class RoomDetailsComponent implements OnInit {
     });
   }
 
-
-
   deleteTask(taskId: string): void {
     this.roomDetails$.pipe(
       take(1),
@@ -93,7 +78,6 @@ export class RoomDetailsComponent implements OnInit {
   }
 
   private generateTaskId(): string {
-    // Placeholder for task ID generation logic
     return Math.random().toString(36).substring(2, 9);
   }
 
